@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../../assets/vendors/jquery/jquery.js"></script>
+</head>
+<body>
+	
+
+				<form id="userForm"> 
+				用户名：<input type="text" name="username" id="username"> 
+				密码：<input type="text" name="password" id="password"> 
+				<input type="submit" value="登录" id="btn"> 
+
+</body>
+<script>
+	$('#btn').click(function(){
+		var name = $('#username').val();
+		var pwd = $('#password').val();
+		$.ajax({
+			url:'http://localhost/user/check',
+			type:'post',
+			data:{name:name,pwd:pwd},
+			dataType:'jsonp',
+			jsonp:'fn',
+			success:function(msg){
+				if(msg.flag == 1){
+					alert('登录成功');
+				}else{
+					alert('登录失败');
+				}
+			}
+		},'json');
+	})
+</script>
+</html>
